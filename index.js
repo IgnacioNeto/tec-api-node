@@ -7,7 +7,7 @@ const porta =3000;
 
 // Rotas (endpoint) para a raiz da API
 app.get('/', (req, res) => {
-    res.send('É um dia lindo para aprender sobre APIs');
+    res.send('Página inicial da aplicação');
 
 });
 
@@ -31,9 +31,9 @@ app.put('/alunos/:id', (req, res) => {
     res.send('Atualizando todos os dados de um aluno');
 });
 
-// Rotas (endpoint) para atualizar alguns dados de alunos
+// Rotas (endpoint) para atualizar alguns dados de um aluno
 app.patch('/alunos/:id', (req, res) => {
-    res.send('Atualizando todos os dados de um aluno');
+    res.send('Atualizando alguns dados de um aluno');
 });
 
 // Rotas (endpoint) para excluir um aluno
