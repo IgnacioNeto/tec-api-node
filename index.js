@@ -1,5 +1,5 @@
 import express from "express";
-import { ler } from "./src/aluno.js";
+import { ler, inserir, lerUm, atualizar } from "./src/aluno.js";
 const app = express();
 const porta =3000;
 
@@ -25,12 +25,20 @@ app.get('/alunos', (req, res) => {
 
 // Rotas (endpoint) para exibir um único aluno
 app.get('/alunos/:id', (req, res) => {
-    res.send('Exibindo dados de um aluno');
+    // res.send('Exibindo dados de um aluno');
+
+    const id = req.params.id;
+    lerUm(id, res);
 });
 
 // Rotas (endpoint) para inserir aluno
 app.post('/alunos', (req, res) => {
-    res.send('Inserindo alunos');
+    // res.send('Inserindo alunos');
+
+    /* Capturando os dados a partir do corpo da requisição */
+    const novoAluno = req.body;
+    /* Executando a função inserir e passando o parâmetros da função novoAluno */
+    inserir(novoAluno, res);
 });
 
 // Rotas (endpoint) para atualizar todos os dados dos alunos
@@ -40,7 +48,17 @@ app.put('/alunos/:id', (req, res) => {
 
 // Rotas (endpoint) para atualizar alguns dados de um aluno
 app.patch('/alunos/:id', (req, res) => {
-    res.send('Atualizando alguns dados de um aluno');
+    // res.send('Atualizando alguns dados de um aluno');
+
+    // capturar id
+    const id = parseInt(req.params.id);
+
+    // dados do aluno
+    const aluno = req.body;
+
+    // chamar função
+    atualizar(id, aluno, res);
+
 });
 
 // Rotas (endpoint) para excluir um aluno
