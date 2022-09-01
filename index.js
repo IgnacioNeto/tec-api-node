@@ -1,5 +1,5 @@
 import express from "express";
-import { ler, inserir, lerUm, atualizar } from "./src/aluno.js";
+import { ler, inserir, lerUm, atualizar, excluir } from "./src/aluno.js";
 const app = express();
 const porta =3000;
 
@@ -63,10 +63,15 @@ app.patch('/alunos/:id', (req, res) => {
 
 // Rotas (endpoint) para excluir um aluno
 app.delete('/alunos/:id', (req, res) => {
-    res.send('Excluir um aluno');
+    // res.send('Excluir um aluno');
+
+    // capturar id
+    const id = parseInt(req.params.id);
+
+    // chamar função
+    excluir(id, res);
+
 });
-
-
 
 
 // configurando o servidor
