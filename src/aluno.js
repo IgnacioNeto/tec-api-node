@@ -82,6 +82,25 @@ function atualizar(id, aluno, res) {
     });
 
 }
+function atualizarTodos(id, aluno, res) {
+    const sql = 'UPDATE alunos SET ? WHERE id = ?';
+
+    /* para passar mais de um parâmetro usamos o array.
+    dentro dele a ordem importa, pois precisa corresponder
+    ao SQL acima */
+    conexao.query(sql, [aluno, id], (erro, resultados) => {
+        if(erro) {
+            res.status(400).json(erro.code);
+        } else {
+            // res.status(200).json({"Status" : "Atualizado com sucesso!"}); 
+
+            // spread operator (operador de espalhamento de objetos)
+            res.status(200).json({...aluno, id});
+        }
+
+    });
+
+}
 
 // Função para excluir alunos
 function excluir(id, res) {
@@ -98,4 +117,4 @@ function excluir(id, res) {
     });
 }
 
-export {ler, inserir, lerUm, atualizar, excluir};
+export {ler, inserir, lerUm, atualizar, excluir, atualizarTodos};

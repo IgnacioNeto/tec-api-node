@@ -1,7 +1,7 @@
 import express from "express";
 import cors from "cors";
 
-import { ler, inserir, lerUm, atualizar, excluir } from "./src/aluno.js";
+import { ler, inserir, lerUm, atualizar, excluir, atualizarTodos } from "./src/aluno.js";
 const app = express();
 // Local
 // const porta =3000;
@@ -53,7 +53,17 @@ app.post('/alunos', (req, res) => {
 
 // Rotas (endpoint) para atualizar todos os dados dos alunos
 app.put('/alunos/:id', (req, res) => {
-    res.send('Atualizando todos os dados de um aluno');
+    // res.send('Atualizando todos os dados de um aluno');
+        // capturar id
+
+        const id = parseInt(req.params.id);
+
+        // dados do aluno
+        const aluno = req.body;
+    
+        // chamar função
+        atualizarTodos(id, aluno, res);
+
 });
 
 // Rotas (endpoint) para atualizar alguns dados de um aluno
